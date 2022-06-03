@@ -3,13 +3,15 @@ package com.springboot.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.repository.MemberRepository;
 import com.springboot.vo.Member;
 
-@Service
+@Transactional
 public class MemberService {
 
 	private final MemberRepository memberRepository;
