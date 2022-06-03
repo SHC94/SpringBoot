@@ -7,6 +7,6 @@ import com.springboot.vo.Member;
 
 import java.util.Optional;
 
-public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Long>, MemberRepository {
+public interface SpringDataJpaMemberRepository{
 	Optional<Member> findByName(String name);
 }
