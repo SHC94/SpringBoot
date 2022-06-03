@@ -14,7 +14,9 @@ public class SpringBootServiceImpl implements SpringBootService {
 	
 	@Override
 	public SpringBootVO selectSpringBootList() {
-		SpringBootVO resultList = springBootMapper.selectSpringBootList(); 
+		
+		SpringBootVO resultList = springBootMapper.selectSpringBootList();
+		
 		return resultList;
 	}//end selectSpringBootList()
 

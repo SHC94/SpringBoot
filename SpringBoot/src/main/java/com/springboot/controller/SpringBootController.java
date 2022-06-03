@@ -21,7 +21,7 @@ public class SpringBootController {
 		
 		model.addAttribute("result", result);
 		
-		return "board/list";
+		return "list";
 	}//end springBootList()
 	
 	
