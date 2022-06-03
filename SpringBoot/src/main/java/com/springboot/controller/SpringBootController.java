@@ -20,7 +20,7 @@ public class SpringBootController {
 		SpringBootVO result = springBootService.selectSpringBootList();
 		
 		model.addAttribute("result", result);
-		
+		 
 		return "list";
 	}//end springBootList()
 	
