@@ -8,16 +8,15 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import com.springboot.service.MemberServiceImpl;
 import com.springboot.vo.Member;
 
-public class MemberServiceTest {
+public class MemoryMemberRepositoryTest {
 	
-	MemberServiceImpl memberService = new MemberServiceImpl();
+	MemoryMemberRepository memberRepository = new MemoryMemberRepository();
 	
 	@AfterEach
 	public void afterEach() {
-		memberService.clearStore();
+		memberRepository.clearStore();
 	}//end afterEach()
 	
 	@Test
@@ -25,9 +24,9 @@ public class MemberServiceTest {
 		Member member = new Member();
 		member.setName("spring");
 		
-		memberService.save(member);
+		memberRepository.save(member);
 		
-		Member result = memberService.findById(member.getId()).get();
+		Member result = memberRepository.findById(member.getId()).get();
 		
 		System.out.println("result = " + (result == member));
 		
@@ -40,13 +39,13 @@ public class MemberServiceTest {
 	
 		Member member1 = new Member();
 		member1.setName("spring1");
-		memberService.save(member1);
+		memberRepository.save(member1);
 		
 		Member member2 = new Member();
 		member2.setName("spring2");
-		memberService.save(member2);
+		memberRepository.save(member2);
 		
-		Member result = memberService.findByName("spring1").get();
+		Member result = memberRepository.findByName("spring1").get();
 		
 		assertThat(result).isEqualTo(member1);
 	}//end findByName()
@@ -55,13 +54,13 @@ public class MemberServiceTest {
 	public void findAll() {
 		Member member1 = new Member();
 		member1.setName("spring1");
-		memberService.save(member1);
+		memberRepository.save(member1);
 		
 		Member member2 = new Member();
 		member2.setName("spring2");
-		memberService.save(member2);
+		memberRepository.save(member2);
 		
-		List<Member> result = memberService.findAll();
+		List<Member> result = memberRepository.findAll();
 		assertThat(result.size()).isEqualTo(2);
 	}//end findAll()
 }//end class()
