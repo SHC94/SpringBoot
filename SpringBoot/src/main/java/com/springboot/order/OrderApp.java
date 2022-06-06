@@ -1,5 +1,8 @@
 package com.springboot.order;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import com.springboot.AppConfig;
 import com.springboot.member.Grade;
 import com.springboot.member.Member;
@@ -13,10 +16,15 @@ public class OrderApp {
 //		MemberService memberService = new MemberServiceImpl(null);
 //		OrderService orderService = new OrderServiceImpl(null, null);
 		
-		AppConfig appConfig = new AppConfig();
-		MemberService memberService = appConfig.memberService();
-		OrderService orderService = appConfig.orderService();
+//		AppConfig appConfig = new AppConfig();
+//		MemberService memberService = appConfig.memberService();
+//		OrderService orderService = appConfig.orderService();
 
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class); 
+		
+		MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
+		OrderService orderService 	= applicationContext.getBean("orderService", OrderService.class);
+		
 		//회원 가입
 		Long memberId = 1L;
 		Member member = new Member(memberId, "memberA", Grade.VIP);
