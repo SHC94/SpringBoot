@@ -1,23 +1,28 @@
 package com.springboot.order;
 
+import com.springboot.AppConfig;
 import com.springboot.member.Grade;
 import com.springboot.member.Member;
 import com.springboot.member.MemberService;
-import com.springboot.member.MemberServiceImpl;
 
 public class OrderApp {
 
 	//main method test
 	public static void main(String[] args) {
-		MemberService memberService = new MemberServiceImpl();
-		OrderService orderService = new OrderServiceImpl();
 		
+//		MemberService memberService = new MemberServiceImpl(null);
+//		OrderService orderService = new OrderServiceImpl(null, null);
+		
+		AppConfig appConfig = new AppConfig();
+		MemberService memberService = appConfig.memberService();
+		OrderService orderService = appConfig.orderService();
+
 		//회원 가입
 		Long memberId = 1L;
 		Member member = new Member(memberId, "memberA", Grade.VIP);
 		memberService.join(member);
 		
-		Order order = orderService.createOrder(memberId, "itemA", 10000);
+		Order order = orderService.createOrder(memberId, "itemA", 20000);
 		System.out.println("order = " + order.toString());
 		//System.out.println("calculatePrice = " + order.calculatePrice());
 		
